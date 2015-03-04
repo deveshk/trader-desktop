@@ -1,0 +1,115 @@
+<div class="dashboardContainer" ng-init="vm.isView = false">
+    <div class="dashboardContainer_header">
+        <div class="dashboardContainer_header_title">Trader Desktop
+
+            <div class="dashboardContainer_header_title_nav">
+                <ul class="dashboardContainer_header_title_links">
+                    <li class="username" ng-bind="vm.username"></li>
+                    <li class="logout"><a ng-click="vm.signOut()">Signout</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    <div class="dashboardContainer_operations">
+        <div class="dashboardContainer_operations_btn">
+            <ul class="dashboardContainer_operations_btn_links">
+                <li class="btn" ng-click="vm.displayOrderForm()">Trade</li>
+                <li class="btn" ng-click="vm.deleteAllOrders()">Delete All</li>
+                <li class="btn" ng-click="vm.refreshAllOrders()">Refresh</li>
+            </ul>
+            <span id="spinner" style="display: none">
+                <img src="images/loader.GIF" class="ajax-loader"/>
+                </span>
+        </div>
+        <div class="dashboardContainer_operations_view">
+            <ul class="dashboardContainer_operations_view_links">
+                <li class="btn hidecolumn"><a href="#" ng-click="vm.isView=false"> <img width="30px" height="25px" title="Table View"
+                                                  src="images/table_icon.png" alt="Table View" border="0px"> </a></li>
+                <li class="btn hidecolumn"><a href="#" ng-click="vm.isView=true"><img width="30px" height="25px" title="Chart View"
+                                                 src="images/chart_icon.png" alt="Chart View" border="0px"></a></li>
+
+            </ul>
+        </div>
+    </div>
+    <div class="dashboardContainer_tableView" ng-if="vm.isView == false">
+        <div class="dashboardContainer_tableView_headRow">
+            <div class="dashboardContainer_tableView_headRow_divCell">
+                <p>Id</p>
+            </div>
+            <div class="dashboardContainer_tableView_headRow_divCell hidecolumn">
+                <p>Creation Time</p>
+            </div>
+            <div class="dashboardContainer_tableView_headRow_divCell">
+                <p>Side</p>
+            </div>
+            <div class="dashboardContainer_tableView_headRow_divCell">
+                <p>Symbol</p>
+            </div>
+            <div class="dashboardContainer_tableView_headRow_divCell">
+                <p>Quantity</p>
+            </div>
+            <div class="dashboardContainer_tableView_headRow_divCell hidecolumn" >
+                <p>Placed</p>
+            </div>
+            <div class="dashboardContainer_tableView_headRow_divCell hidecolumn">
+                <p>Executed</p>
+            </div>
+            <div class="dashboardContainer_tableView_headRow_divCell">
+                <p>Limit Price</p>
+            </div>
+            <div class="dashboardContainer_tableView_headRow_divCell hidecolumn">
+                <p>Priority</p>
+            </div>
+            <div class="dashboardContainer_tableView_headRow_divCell hidecolumn">
+                <p>Status</p>
+            </div>
+            <div class="dashboardContainer_tableView_headRow_divCell hidecolumn">
+                <p>Trader</p>
+            </div>
+        </div>
+        <!--<div class="dashboardContainer_tableView_divRow" ng-hide="vm.orderList.length">Sorry No Order Placed Yet !!
+        </div>-->
+        <div class="dashboardContainer_tableView_divRow" ng-repeat="order in vm.finalOrders">
+            <div class="dashboardContainer_tableView_divRow_divCell">
+                <p>{{order.id}}</p>
+            </div>
+            <div class="dashboardContainer_tableView_divRow_divCell hidecolumn">
+                <p>{{order.creationTime | date : 'short'}}</p>
+            </div>
+            <div class="dashboardContainer_tableView_divRow_divCell">
+                <p>{{order.side}}</p>
+            </div>
+            <div class="dashboardContainer_tableView_divRow_divCell">
+                <p>{{order.symbol}}</p>
+            </div>
+            <div class="dashboardContainer_tableView_divRow_divCell">
+                <p>{{order.quantity}}</p>
+            </div>
+            <div class="dashboardContainer_tableView_divRow_divCell hidecolumn">
+                <p>{{order.quantityPlaced}}</p>
+            </div>
+            <div class="dashboardContainer_tableView_divRow_divCell hidecolumn">
+                <p>{{order.quantityExecuted}}</p>
+            </div>
+            <div class="dashboardContainer_tableView_divRow_divCell">
+                <p>{{order.limitPrice | currency:'$'}}</p>
+            </div>
+            <div class="dashboardContainer_tableView_divRow_divCell hidecolumn">
+                <p>{{order.priority}}</p>
+            </div>
+            <div class="dashboardContainer_tableView_divRow_divCell hidecolumn">
+                <p>{{order.status}}</p>
+            </div>
+            <div class="dashboardContainer_tableView_divRow_divCell hidecolumn">
+                <p>{{order.traderId}}</p>
+            </div>
+        </div>
+
+    </div>
+    <div ng-if="vm.isView">
+            <div data-at-barchart></div>
+    </div>
+
+
+</div>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.js"></script>
+    <style>
+        .scale path,
+        .sacle line {
+            fill:none;
+            stroke:none;
+            shape-rendering:crispEdges}
+        .scale text{font-size:10px}
+
+        .scalex path,
+        .saclex line {
+            fill:none;
+            stroke:#000;
+            shape-rendering:crispEdges}
+        .scale text{font-size:10px}
+        .grid .tick {
+            stroke: lightgrey;
+            opacity: 0.7;
+        }
+        .grid path {
+            stroke-width: 0;
+        }
+
+        .grid .tick {
+            stroke: lightgrey;
+            opacity: 0.7;
+        }
+        .grid path {
+            stroke-width: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="chart"></div>
+<script>
+
+    //var data = [40,30,20,50,80];
+    var data = [
+        {
+            orderId:29,
+            total:2000,
+            placed:1400,
+            executed:500
+        },{
+            orderId:30,
+            total:2800,
+            placed:1000,
+            executed:700
+        },{
+            orderId:31,
+            total:2800,
+            placed:1400,
+            executed:700
+        },{
+            orderId:32,
+            total:2800,
+            placed:1000,
+            executed:500
+        }
+    ];
+    var newData = [];
+    var scalesData = data.forEach(function(o,i) {
+        newData[i] = {
+            orderId: o.orderId,
+            total: 100,
+            placed: (o.total/ o.placed),
+            executed: (o.placed/ o.executed)
+        }
+
+    });
+    console.log(JSON.stringify(newData));
+    var h = 200;
+    var w = 300;
+    var padding = 20;
+    var barheight = 20;
+    var svg = d3.select("body")
+            .append("svg")
+            .attr("height",h)
+            .attr("width",w);
+    var ids = [];
+    newData.map(function(o,i){
+        return ids.push(o.orderId);
+    });
+    var yScale = d3.scale.ordinal().domain(ids)
+            .rangeRoundPoints([12,h-padding-11])
+
+
+    var xScale = d3.scale.linear()
+            .domain([0,100])
+            .range([0,w-padding])
+             ;
+
+    var yAxisGen = d3.svg.axis().scale(yScale).orient("left").tickSize(-w, 0, 0) ;
+    var xAxisGen = d3.svg.axis().scale(xScale).orient("top").ticks(3).tickSize(-h, 0, 0).tickFormat(function(d) { return parseInt(d, 10) + "%"; });
+
+    var yAxis = svg.append("g").call(yAxisGen).attr("class","scale")
+            .attr("transform","translate("+padding+","+padding+")");
+
+    var xAxis = svg.append("g").call(xAxisGen).attr("class","scalex")
+            .attr("transform","translate("+padding+","+padding+")");
+
+    for(var i=0; i<newData.length;i++){
+        var obj = newData[i];
+        var d = [obj.total,obj.placed,obj.executed];
+
+        makeChart(d,i);
+    }
+
+    function makeChart(data,index){
+        svg.append("g").selectAll("rect")
+                .data(d)
+                .enter()
+                .append("rect")
+                .attr({
+                    x: function(d){
+                        return padding+2;
+                    },
+                    y: function(d,i){
+                        return yScale.range()[index]+padding/2;
+                    },
+                    height:function(){return barheight;},
+                    width:function(d,i ) {
+                          return  xScale(d);
+                    }
+                })
+                .style("fill",function(d,i){
+                    if(i===0)
+                        return '#fff4ce';
+                    else if(i===1)
+                        return '#fdbd5a';
+                    else
+                        return '#fd8300';
+                });
+    }
+    // function for the x grid lines
+    function make_x_axis() {
+        return d3.svg.axis()
+                .scale(xScale)
+                .orient("bottom")
+                .ticks(8);
+    }
+
+    // function for the y grid lines
+    function make_y_axis() {
+        return d3.svg.axis()
+                .scale(yScale)
+                .orient("left")
+                .ticks(10);
+    }
+
+</script>
+</body>
+</html>

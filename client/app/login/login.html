@@ -1,0 +1,15 @@
+
+<div id="loginContainer">
+
+        <form name="signin_form" class="form-signin" ng-submit="vm.authenticateUser(item.currentUser,signin_form)" novalidate>
+            <h2 class="form-signin-heading">Please sign in</h2>
+
+            <select name="userList" class="form-control" id="select"  ng-options="item as item.name for item in vm.users track by item.id" ng-model="item.currentUser" required>
+                <option style="display:none" value="" >Choose User</option>
+            </select>
+            <div class="error" ng-show="signin_form.userList.$invalid &&  signin_form.submitted">
+                <small class="error">Please choose user to sign in</small>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        </form>
+</div>

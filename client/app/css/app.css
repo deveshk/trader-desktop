@@ -1,0 +1,240 @@
+/* -----------------------------------------------------------------------------
+ * variables
+ * -------------------------------------------------------------------------- */
+/* ----- Colors ----- */
+/* ----- Typography ----- */
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  padding-top: 50px; }
+
+/* Remove border to delete the 1px line */
+.navbar-fixed-top {
+  border: 0; }
+
+body {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  /*background-color: #eee;*/
+  font-family: arial, sans-serif; }
+
+@media (min-width: 768px) {
+  .bs-example {
+    margin-left: 0px;
+    margin-right: 0px;
+    background-color: white;
+    border-width: 1px;
+    border-color: #dddddd;
+    border-radius: 4px 4px 0px 0px;
+    box-shadow: none; } }
+
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto; }
+  .form-signin.form-signin-heading {
+    margin-bottom: 10px; }
+
+#select {
+  margin-bottom: 6px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0; }
+
+.navbar-inverse {
+  background-color: #E0E0E0;
+  border-color: #080808; }
+
+.dashboardContainer {
+  height: 550px;
+  margin: 0 auto;
+  border: 1px solid black;
+  overflow-y: scroll; }
+  .dashboardContainer_header {
+    height: 70px;
+    width: 100%;
+    border-bottom: 1px solid black;
+    background-color: #E0E0E0; }
+    @media (max-width: 320px) {
+      .dashboardContainer_header {
+        height: 51px; } }
+    .dashboardContainer_header_title {
+      font-size: 16px;
+      padding: 23px;
+      font-weight: bold; }
+      @media (max-width: 320px) {
+        .dashboardContainer_header_title {
+          font-size: 13px;
+          padding: 8px; } }
+      .dashboardContainer_header_title_nav {
+        display: inline; }
+      .dashboardContainer_header_title_links {
+        float: right; }
+        @media (max-width: 320px) {
+          .dashboardContainer_header_title_links {
+            padding: 0px; } }
+        .dashboardContainer_header_title_links li {
+          padding: 5px;
+          display: inline; }
+          @media (max-width: 320px) {
+            .dashboardContainer_header_title_links li {
+              padding: 0px; } }
+  .dashboardContainer_operations {
+    height: 59px;
+    border-bottom: 1px solid black;
+    background-color: #E0E0E0; }
+    .dashboardContainer_operations_btn {
+      display: inline; }
+      @media (max-width: 320px) {
+        .dashboardContainer_operations_btn {
+          display: inline-block;
+          width: 228px; } }
+      .dashboardContainer_operations_btn_links {
+        float: left;
+        padding: 5px;
+        margin-top: 11px; }
+      .dashboardContainer_operations_btn li.btn {
+        background-image: linear-gradient(to bottom, #000000, #000000);
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        border-radius: 0px;
+        font-family: Arial;
+        color: #ffffff;
+        font-size: 13px;
+        border: solid #000000 0px;
+        text-decoration: none;
+        width: 90px;
+        height: 25px; }
+        @media (max-width: 320px) {
+          .dashboardContainer_operations_btn li.btn {
+            width: 70px; } }
+      .dashboardContainer_operations_btn li.btn:hover {
+        background: #3cb0fd;
+        background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+        background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+        background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+        background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+        background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+        text-decoration: none; }
+    .dashboardContainer_operations_view {
+      display: inline; }
+      @media (min-width: 1024px) {
+        .dashboardContainer_operations_view {
+          float: right;
+          padding: 5px; } }
+      .dashboardContainer_operations_view li.btn {
+        text-decoration: none; }
+      .dashboardContainer_operations_view li.btn:hover {
+        text-decoration: none; }
+      @media (max-width: 320px) {
+        .dashboardContainer_operations_view_links {
+          width: 142px;
+          padding-left: 182px;
+          display: inline; } }
+  .dashboardContainer_tableView {
+    display: table;
+    width: 100%; }
+    .dashboardContainer_tableView_headRow {
+      display: table-row;
+      font-weight: bold;
+      text-align: left;
+      background-color: #C0C0C0; }
+      .dashboardContainer_tableView_headRow_divCell {
+        display: table-cell;
+        border-width: thin;
+        padding-left: 5px;
+        padding-right: 5px; }
+        @media (max-width: 320px) {
+          .dashboardContainer_tableView_headRow_divCell.hidecolumn {
+            display: none; } }
+        .dashboardContainer_tableView_headRow_divCell p {
+          margin-top: 5px; }
+    .dashboardContainer_tableView_divRow {
+      display: table-row; }
+      .dashboardContainer_tableView_divRow_divCell {
+        display: table-cell;
+        border-bottom: 1px solid #cccccc;
+        padding-left: 5px;
+        padding-right: 5px; }
+        @media (max-width: 320px) {
+          .dashboardContainer_tableView_divRow_divCell.hidecolumn {
+            display: none; } }
+
+.username {
+  font-size: 16px;
+  font-style: italic; }
+  @media (max-width: 320px) {
+    .username {
+      font-size: 13px; } }
+
+.logout {
+  font-size: 12px;
+  color: #0000ff;
+  cursor: pointer; }
+
+.black_overlay {
+  display: none;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  z-index: 1001;
+  -moz-opacity: 0.8;
+  opacity: .8;
+  filter: alpha(opacity=80); }
+
+.white_content {
+  display: none;
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  width: 50%;
+  height: 50%;
+  padding: 16px;
+  border: 16px solid orange;
+  background-color: white;
+  z-index: 1002;
+  overflow: auto; }
+
+@media (max-width: 320px) {
+  .btn .hidecolumn {
+    display: none; } }
+
+/****** CHART CLASSES BELOW  ****/
+.axis path, .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges; }
+
+.line {
+  fill: none;
+  stroke: #98abc5;
+  shape-rendering: crispEdges; }
+
+.bar {
+  fill: steelblue; }
+
+.x.axis path {
+  display: none; }
+
+.legend line {
+  stroke: #000;
+  shape-rendering: crispEdges; }
+
+.grid .tick {
+  stroke: lightgrey;
+  stroke-opacity: 0.7;
+  shape-rendering: crispEdges; }
+
+.grid path {
+  stroke-width: 0; }
+
+.error > small, .error small.error {
+  display: block;
+  padding: 0.375em 0.25em;
+  margin-top: 0;
+  margin-bottom: 1em;
+  font-size: 0.75em;
+  font-weight: bold;
+  background: #c60f13;
+  color: #fff; }
