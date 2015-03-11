@@ -43,7 +43,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // parse application/json
 app.use(bodyParser.json());
 
-app.use('/', express.static(__dirname + '/app'));
+app.use('/', express.static('./client/app'));
 
 // Start listening on port 8080
 server.listen(8080);
@@ -56,10 +56,10 @@ console.log('Listening on port 8080');
 // Log socket connections and disconnections
 io.sockets.on('connection', function(socket) {
     'use strict';
-    console.log(socket.id + ' connected');
+    console.log(socket.id + ' socket connected to port 8080');
 
     socket.on('disconnect', function() {
-        console.log(socket.id + ' disconnected');
+        console.log(socket.id + 'socket disconnected to port 8080');
     });
 });
 

@@ -27,7 +27,7 @@
              * Feature areas
              */
             'login',
-            'dashboard',
+            'dashboard'
 
         ]);
 })();
